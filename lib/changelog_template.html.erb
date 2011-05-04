@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>Changelog :: <%= rlog.cvs_module %></title>
+        <link rel="stylesheet",  href="style.css" type="text/css" />
+        </script>
+    </head>
+    <body>
+        <h1>CVS Changelog for <%= rlog.cvs_module %>on <%= Date.today.strftime("%b %d, %Y") %></h1>
+        <% commits.each do |commit| %>
+        <div class="checkin">
+            <h2><%= commit.date.strftime('%b %d, %Y at %I:%M %p') %></h2>
+            <h3>Checked in by <%= commit.author %></h3>
+            <pre><%= commit.comment %></pre>
+            <ul>
+                <% commit.files.each do |file| %>
+                <li>
+                    <%= file.name %>(<%= file.revision %>)
+                </li>
+                <% end %>
+            </ul>
+        </div>
+        <% end %>
+    </body>
+</html>
